@@ -1,0 +1,23 @@
+.footer {
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  flex: 0 0 auto;
+  padding-bottom: 20px;
+  color: var(--neutral-color-1);
+
+  @media (max-width: 768px) {
+    font-size: 12px;
+  }
+}
+
+.link {
+  text-decoration: none;
+  color: var(--link-color);
+
+  &:hover {
+    color: var(--link-color-hover);
+  }
+}
