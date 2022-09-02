@@ -1,0 +1,16 @@
+:global(body) {
+  font-family: var(--font-family);
+  height: 100vh;
+  background-color: var(--neutral-color-5);
+}
+
+:global(root) {
+  height: 100%;
+}
+
+.app {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  height: 100%;
+}
