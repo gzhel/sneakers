@@ -11,6 +11,10 @@
     background-color: var(--neutral-color-4) !important;
     color: var(--neutral-color-1) !important;
   }
+
+  @media (max-width: 768px) {
+    top: 150px !important;
+  }
 }
 
 .swiper-button-prev {
@@ -31,10 +35,10 @@
 
 .swiper-wrapper {
   height: 500px !important;
-}
 
-.swiper-slide-visible img {
-  border-radius: 10px !important;
+  @media (max-width: 768px) {
+    height: 300px !important;
+  }
 }
 
 .swiper-pagination {
@@ -47,20 +51,4 @@
   height: 86px;
   background-size: cover;
   border-radius: 10px;
-
-  &:nth-child(1) {
-    background-image: url("../images/image-product-1-thumbnail.jpg");
-  }
-
-  &:nth-child(2) {
-    background-image: url("../images/image-product-2-thumbnail.jpg");
-  }
-
-  &:nth-child(3) {
-    background-image: url("../images/image-product-3-thumbnail.jpg");
-  }
-
-  &:nth-child(4) {
-    background-image: url("../images/image-product-4-thumbnail.jpg");
-  }
 }

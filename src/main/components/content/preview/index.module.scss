@@ -1,11 +1,21 @@
 .preview {
   width: 40%;
   height: auto;
+
+  @media (max-width: 768px) {
+    width: 100%;
+    margin: 0 auto;
+  }
 }
 
 .swiper {
   width: 500px;
   height: 630px;
+
+  @media (max-width: 768px) {
+    width: 300px;
+    height: 300px;
+  }
 }
 
 .swiperSlide img {

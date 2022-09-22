@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, useMemo } from 'react';
 import { Navigation, Pagination, Virtual } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import cls from 'classnames';
@@ -7,13 +7,21 @@ import 'swiper/scss/navigation';
 import 'swiper/scss/pagination';
 import './styles/custom-swiper.scss';
 import s from './index.module.scss';
-import image1 from './images/image-product-1.jpg';
-import image2 from './images/image-product-2.jpg';
-import image3 from './images/image-product-3.jpg';
-import image4 from './images/image-product-4.jpg';
+import { useResizeDetector } from 'react-resize-detector';
 
-export const Preview: FC = () => {
-  const slides = [image1, image2, image3, image4];
+type Props = {
+  images: string[];
+};
+export const Preview: FC<Props> = (p) => {
+  const bulletStyle = (idx: number) => `background-image: url(${p.images[idx]})`;
+
+  const { width = window.screen.width } = useResizeDetector({
+    handleHeight: false,
+    refreshMode: 'debounce',
+    refreshRate: 150
+  });
+
+  const isMobile = useMemo<boolean>(() => (width || 0) < 400, [width]);
 
   return (
     <div className={s.preview}>
@@ -27,13 +35,23 @@ export const Preview: FC = () => {
           loadOnTransitionStart: true
         }}
         speed={800}
-        pagination={{
-          clickable: true
-        }}
+        pagination={
+          isMobile
+            ? false
+            : {
+                clickable: true,
+                type: 'bullets',
+                renderBullet: (index, className) => {
+                  return (
+                    '<span class="' + className + '" style="' + bulletStyle(index) + '"></span>'
+                  );
+                }
+              }
+        }
         slidesPerView={1}
         className={s.swiper}
       >
-        {slides.map((slideContent, index) => (
+        {p.images.map((slideContent, index) => (
           <SwiperSlide
             key={slideContent}
             virtualIndex={index}
