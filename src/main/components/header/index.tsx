@@ -17,7 +17,7 @@ export const Header: FC = () => {
 
   const isMobile = useMemo<boolean>(() => (width || 0) < 400, [width]);
 
-  const [isMenuCollapsed, setMenuCollapsed] = useState(false);
+  const [isMenuCollapsed, setMenuCollapsed] = useState(true);
   const handleMenuCollapsed = () => setMenuCollapsed((prev) => !prev);
 
   return (
