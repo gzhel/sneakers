@@ -66,3 +66,28 @@
   padding-top: 5px;
   cursor: pointer;
 }
+
+.mobileMenu {
+  position: relative;
+  z-index: 10000;
+  height: calc(100vh);
+  width: 90%;
+
+  & .nav {
+    flex-direction: column;
+    margin: 20px 0;
+  }
+
+  & .navItem {
+    margin-bottom: 30px;
+    cursor: pointer;
+
+    &:hover {
+      color: var(--neutral-color-6);
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
