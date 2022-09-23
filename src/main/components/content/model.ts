@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { api, ProductInfo, productInfoInitial } from './api';
+import { api, ProductInfo, productInfoInitial } from '../../store-sneakers/api';
 
 export const useModel = () => {
   const { productId } = useParams();

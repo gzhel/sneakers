@@ -1,5 +1,7 @@
 import { ChangeEvent, useState } from 'react';
-import { ProductInfo } from '../api';
+import { ProductInfo } from '../../../store-sneakers/api';
+import { sneakersActions } from '../../../store-sneakers';
+import { useCallDispatch } from '../../../store';
 
 export const useModel = (p: ProductInfo) => {
   const { info: i } = p;
@@ -10,5 +12,7 @@ export const useModel = (p: ProductInfo) => {
   const price = `$${!i.sale ? i.price.toFixed(2) : (i.price * (i.sale / 100)).toFixed(2)}`;
   const oldPrice = `$${i.price.toFixed(2)}`;
 
-  return { i, count, decreaseCount, increaseCount, handleCount, price, oldPrice };
+  const addCartItem = useCallDispatch(sneakersActions.onAddCartItem);
+
+  return { i, count, decreaseCount, increaseCount, handleCount, price, oldPrice, addCartItem };
 };

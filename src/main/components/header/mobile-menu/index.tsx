@@ -1,12 +1,14 @@
 import React, { FC } from 'react';
 import s from '../index.module.scss';
+import { sneakersHooks } from '../../../store-sneakers';
 
 type Props = {
-  isMobile: boolean;
   isMenuCollapsed: boolean;
 };
 export const MobileMenu: FC<Props> = (p) => {
-  return !p.isMobile || p.isMenuCollapsed ? null : (
+  const { isMobile } = sneakersHooks.useIsMobile();
+
+  return !isMobile || p.isMenuCollapsed ? null : (
     <div className={s.mobileMenu}>
       <nav>
         <ul className={s.nav}>

@@ -7,12 +7,14 @@ import 'swiper/scss/navigation';
 import 'swiper/scss/pagination';
 import './styles/custom-swiper.scss';
 import s from './index.module.scss';
+import hooks from '../../../store-sneakers/hooks';
 
 type Props = {
   images: string[];
-  isMobile: boolean;
 };
 export const Preview: FC<Props> = (p) => {
+  const { isMobile } = hooks.useIsMobile();
+
   const bulletStyle = (idx: number) => `background-image: url(${p.images[idx]})`;
 
   return (
@@ -28,7 +30,7 @@ export const Preview: FC<Props> = (p) => {
         }}
         speed={800}
         pagination={
-          p.isMobile
+          isMobile
             ? false
             : {
                 clickable: true,

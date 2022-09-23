@@ -1,11 +1,11 @@
 import React, { FC } from 'react';
 import s from '../index.module.scss';
+import { sneakersHooks } from '../../../store-sneakers';
 
-type Props = {
-  isMobile: boolean;
-};
-export const Menu: FC<Props> = (p) => {
-  return p.isMobile ? null : (
+export const Menu: FC = () => {
+  const { isMobile } = sneakersHooks.useIsMobile();
+
+  return isMobile ? null : (
     <nav>
       <ul className={s.nav}>
         <li className={s.navItem}>
