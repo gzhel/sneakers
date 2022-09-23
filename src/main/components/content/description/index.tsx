@@ -7,6 +7,7 @@ import { useModel } from './model';
 
 type Props = {
   productInfo: ProductInfo;
+  addCartItem: (item: ProductInfo, amount: number) => void;
 };
 export const Description: FC<Props> = (p) => {
   const m = useModel(p.productInfo);
@@ -33,10 +34,14 @@ export const Description: FC<Props> = (p) => {
             +
           </button>
         </div>
-        <div className={s.cartButton}>
+        <button
+          className={s.cartButton}
+          disabled={m.count < 1}
+          onClick={() => p.addCartItem(p.productInfo, m.count)}
+        >
           <Icons.UilShoppingCart size="1.5em" color="var(--neutral-color-4)" />
           <span className={s.addToCart}>Add to cart</span>
-        </div>
+        </button>
       </div>
     </div>
   );

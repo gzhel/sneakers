@@ -4,6 +4,7 @@ import image3 from './images/image-product-3.jpg';
 import image4 from './images/image-product-4.jpg';
 
 export type ProductInfo = {
+  id: number;
   images: string[];
   info: {
     company: string;
@@ -15,6 +16,7 @@ export type ProductInfo = {
 };
 
 export const productInfoInitial = {
+  id: 0,
   images: [''],
   info: {
     company: '',
@@ -27,6 +29,7 @@ export const productInfoInitial = {
 const getProductInfo = (id: number): Promise<ProductInfo> => {
   console.log('GET', 'getProductInfo', { data: id });
   const mockProductInfo: ProductInfo = {
+    id: 12,
     images: [image1, image2, image3, image4],
     info: {
       company: 'Sneaker company',

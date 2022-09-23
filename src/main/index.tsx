@@ -17,12 +17,15 @@ export const App: FC = () => {
 
   return (
     <div className={s.app}>
-      <Header isMobile={m.isMobile} />
+      <Header isMobile={m.isMobile} cartItems={m.cartItems} />
 
       <Routes>
         <Route path="/" element={<DefaultRedirect />} />
         <Route path="/p" element={<NoData />} />
-        <Route path="/p/:productId" element={<ProductPage isMobile={m.isMobile} />} />
+        <Route
+          path="/p/:productId"
+          element={<ProductPage isMobile={m.isMobile} addCartItem={m.addCartItem} />}
+        />
         <Route path="*" element={<NoData />} />
       </Routes>
 

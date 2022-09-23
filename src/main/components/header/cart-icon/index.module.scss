@@ -8,4 +8,24 @@
 
 .cart {
   cursor: pointer;
+  position: relative;
+}
+
+.cartItems {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+  width: 14px;
+  height: 14px;
+  background-color: var(--primary-color-1);
+  color: var(--primary-color-2);
+  border-radius: 50%;
+  position: absolute;
+  top: -5px;
+  right: 35px;
+
+  @media (max-width: 768px) {
+    right: 25px;
+  }
 }

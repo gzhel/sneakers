@@ -7,9 +7,11 @@ import { CartIcon } from './cart-icon';
 import { MobileMenu } from './mobile-menu';
 import { Menu } from './menu';
 import { Link } from 'react-router-dom';
+import { CartItems } from '../../model';
 
 type Props = {
   isMobile: boolean;
+  cartItems: CartItems;
 };
 export const Header: FC<Props> = (p) => {
   const m = useModel();
@@ -35,7 +37,7 @@ export const Header: FC<Props> = (p) => {
         </div>
 
         <div className={s.right}>
-          <CartIcon isMobile={p.isMobile} />
+          <CartIcon isMobile={p.isMobile} cartItems={p.cartItems} />
 
           <a href="#" className={s.profile}>
             <Icons.UilUserCircle size={p.isMobile ? '2em' : '3em'} color="var(--neutral-color-1)" />
