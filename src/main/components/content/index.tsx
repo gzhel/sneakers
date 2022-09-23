@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { FC } from 'react';
 import s from './index.module.scss';
 import { Preview } from './preview';
 import { Description } from './description';
-import { productInfo } from './mock-data';
+import { useModel } from './model';
 
-export const Content = () => {
+type Props = {
+  isMobile: boolean;
+};
+export const ProductPage: FC<Props> = (p) => {
+  const m = useModel();
+
   return (
     <div className={s.content}>
-      <Preview images={productInfo.images} />
-      <Description productInfo={productInfo} />
+      <Preview images={m.productInfo.images} isMobile={p.isMobile} />
+      <Description productInfo={m.productInfo} />
     </div>
   );
 };

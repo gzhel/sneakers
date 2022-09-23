@@ -1,98 +1,49 @@
 // @ts-ignore
 import * as Icons from '@iconscout/react-unicons';
-import React, { FC, useMemo, useState } from 'react';
+import React, { FC } from 'react';
 import s from './index.module.scss';
-import { useResizeDetector } from 'react-resize-detector';
+import { useModel } from './model';
+import { CartIcon } from './cart-icon';
+import { MobileMenu } from './mobile-menu';
+import { Menu } from './menu';
+import { Link } from 'react-router-dom';
 
-export const Header: FC = () => {
-  const alertCartValue = () => {
-    alert('111 shoes');
-  };
-
-  const { width = window.screen.width } = useResizeDetector({
-    handleHeight: false,
-    refreshMode: 'debounce',
-    refreshRate: 150
-  });
-
-  const isMobile = useMemo<boolean>(() => (width || 0) < 400, [width]);
-
-  const [isMenuCollapsed, setMenuCollapsed] = useState(true);
-  const handleMenuCollapsed = () => setMenuCollapsed((prev) => !prev);
+type Props = {
+  isMobile: boolean;
+};
+export const Header: FC<Props> = (p) => {
+  const m = useModel();
 
   return (
     <>
       <header className={s.header}>
         <div className={s.left}>
-          {!isMobile ? null : (
-            <div className={s.menu} onClick={handleMenuCollapsed}>
+          {!p.isMobile ? null : (
+            <div className={s.menu} onClick={m.handleMenuCollapsed}>
               <Icons.UilBars
                 size="2em"
-                color={isMenuCollapsed ? 'var(--neutral-color-2)' : 'var(--primary-color-1)'}
+                color={m.isMenuCollapsed ? 'var(--neutral-color-2)' : 'var(--primary-color-1)'}
               />
             </div>
           )}
-          <div className={s.logo}>
-            <a href="#">sneakers</a>
-          </div>
-          {isMobile ? null : (
-            <nav>
-              <ul className={s.nav}>
-                <li className={s.navItem}>
-                  <a href="#">Collections</a>
-                </li>
-                <li className={s.navItem}>
-                  <a href="#">Men</a>
-                </li>
-                <li className={s.navItem}>
-                  <a href="#">Women</a>
-                </li>
-                <li className={s.navItem}>
-                  <a href="#">About</a>
-                </li>
-                <li className={s.navItem}>
-                  <a href="#">Contact</a>
-                </li>
-              </ul>
-            </nav>
-          )}
+
+          <Link to="/" className={s.logo}>
+            <div>sneakers</div>
+          </Link>
+
+          <Menu isMobile={p.isMobile} />
         </div>
 
         <div className={s.right}>
-          <div className={s.cart} onClick={alertCartValue}>
-            <Icons.UilShoppingCart
-              size={isMobile ? '1.5em' : '2em'}
-              color="var(--neutral-color-2)"
-            />
-          </div>
+          <CartIcon isMobile={p.isMobile} />
+
           <a href="#" className={s.profile}>
-            <Icons.UilUserCircle size={isMobile ? '2em' : '3em'} color="var(--neutral-color-1)" />
+            <Icons.UilUserCircle size={p.isMobile ? '2em' : '3em'} color="var(--neutral-color-1)" />
           </a>
         </div>
       </header>
-      {!isMobile || isMenuCollapsed ? null : (
-        <div className={s.mobileMenu}>
-          <nav>
-            <ul className={s.nav}>
-              <li className={s.navItem}>
-                <a href="#">Collections</a>
-              </li>
-              <li className={s.navItem}>
-                <a href="#">Men</a>
-              </li>
-              <li className={s.navItem}>
-                <a href="#">Women</a>
-              </li>
-              <li className={s.navItem}>
-                <a href="#">About</a>
-              </li>
-              <li className={s.navItem}>
-                <a href="#">Contact</a>
-              </li>
-            </ul>
-          </nav>
-        </div>
-      )}
+
+      <MobileMenu isMobile={p.isMobile} isMenuCollapsed={m.isMenuCollapsed} />
     </>
   );
 };

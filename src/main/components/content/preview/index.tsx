@@ -1,4 +1,4 @@
-import React, { FC, useMemo } from 'react';
+import React, { FC } from 'react';
 import { Navigation, Pagination, Virtual } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import cls from 'classnames';
@@ -7,21 +7,13 @@ import 'swiper/scss/navigation';
 import 'swiper/scss/pagination';
 import './styles/custom-swiper.scss';
 import s from './index.module.scss';
-import { useResizeDetector } from 'react-resize-detector';
 
 type Props = {
   images: string[];
+  isMobile: boolean;
 };
 export const Preview: FC<Props> = (p) => {
   const bulletStyle = (idx: number) => `background-image: url(${p.images[idx]})`;
-
-  const { width = window.screen.width } = useResizeDetector({
-    handleHeight: false,
-    refreshMode: 'debounce',
-    refreshRate: 150
-  });
-
-  const isMobile = useMemo<boolean>(() => (width || 0) < 400, [width]);
 
   return (
     <div className={s.preview}>
@@ -36,7 +28,7 @@ export const Preview: FC<Props> = (p) => {
         }}
         speed={800}
         pagination={
-          isMobile
+          p.isMobile
             ? false
             : {
                 clickable: true,
@@ -61,7 +53,7 @@ export const Preview: FC<Props> = (p) => {
               src={slideContent}
               alt="img"
               className={s.imagePreview}
-              onClick={() => console.log('open modal with index', index)}
+              onClick={() => console.log('open modal with index (not relevant)', index)}
             />
           </SwiperSlide>
         ))}

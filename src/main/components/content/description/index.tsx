@@ -1,39 +1,35 @@
 // @ts-ignore
 import * as Icons from '@iconscout/react-unicons';
-import React, { ChangeEvent, FC, useState } from 'react';
+import React, { FC } from 'react';
 import s from './index.module.scss';
-import { ProductInfo } from '../mock-data';
+import { ProductInfo } from '../api';
+import { useModel } from './model';
 
 type Props = {
   productInfo: ProductInfo;
 };
 export const Description: FC<Props> = (p) => {
-  const { info: i } = p.productInfo;
-
-  const [count, setCount] = useState<number>(0);
-  const decreaseCount = () => setCount((prev) => (prev > 0 ? prev - 1 : prev));
-  const increaseCount = () => setCount((prev) => prev + 1);
-  const handleCount = (event: ChangeEvent<HTMLInputElement>) => setCount(+event.target.value);
+  const m = useModel(p.productInfo);
 
   return (
     <div className={s.description}>
-      <div className={s.company}>{i.company}</div>
-      <h1 className={s.title}>{i.name}</h1>
-      <div className={s.text}>{i.description}</div>
+      <div className={s.company}>{m.i.company}</div>
+      <h1 className={s.title}>{m.i.name}</h1>
+      <div className={s.text}>{m.i.description}</div>
       <div className={s.priceLayout}>
         <div className={s.price}>
-          ${!i.sale ? i.price.toFixed(2) : (i.price * (i.sale / 100)).toFixed(2)}
-          {!i.sale ? null : <span className={s.sale}>{i.sale}%</span>}
+          {m.price}
+          {!m.i.sale ? null : <span className={s.sale}>{m.i.sale}%</span>}
         </div>
-        {!i.sale ? null : <span className={s.oldPrice}>${i.price.toFixed(2)}</span>}
+        {!m.i.sale ? null : <span className={s.oldPrice}>{m.oldPrice}</span>}
       </div>
       <div className={s.cartLayout}>
         <div className={s.counter}>
-          <button onClick={decreaseCount} className={s.calculate}>
+          <button onClick={m.decreaseCount} className={s.calculate}>
             -
           </button>
-          <input type="number" className={s.count} value={count} onChange={handleCount} />
-          <button onClick={increaseCount} className={s.calculate}>
+          <input type="number" className={s.count} value={m.count} onChange={m.handleCount} />
+          <button onClick={m.increaseCount} className={s.calculate}>
             +
           </button>
         </div>

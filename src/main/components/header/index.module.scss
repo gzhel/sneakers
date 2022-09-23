@@ -17,6 +17,8 @@
 }
 
 .logo {
+  text-decoration: none;
+  color: var(--neutral-color-6);
   font-weight: 700;
   font-size: 36px;
   letter-spacing: 2px;
@@ -49,15 +51,7 @@
   }
 }
 
-.cart {
-  padding: 0 40px;
-
-  @media (max-width: 768px) {
-    padding: 0 30px;
-  }
-}
-
-.cart, .profile {
+.profile {
   cursor: pointer;
 }
 
