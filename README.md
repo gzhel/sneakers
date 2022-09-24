@@ -1,4 +1,4 @@
-# Devfinder
+# Sneakers
 
 ## Table of contents
 
@@ -13,27 +13,29 @@
 
 ### Core features
 
-- Switching between light and dark themes
-- Saving the site theme thanks to localStorage
-- User search via GitHub API
-- Saving the search string via URLSearchParams
+- Getting product data by ID from URL
+- Full-fledged imitation of receiving goods from the Fetch API
+- Adding products to the cart, and receiving the product using Redux
+- A full-fledged slider of images of the selected product
 - Adaptive layout for desktop and mobile
 
 ### Links
 
-- Solution: [https://github.com/gzhel/devfinder](https://github.com/gzhel/devfinder)
-- Demo: [https://gzhel-devfinder.vercel.app/](https://gzhel-devfinder.vercel.app/)
-- Challenge Source: [Frontend Mentor GitHub User Search](https://www.frontendmentor.io/challenges/github-user-search-app-Q09YOgaH6)
+- Solution: [https://github.com/gzhel/sneakers](https://github.com/gzhel/sneakers)
+- Demo: [https://gzhel-sneakers.vercel.app/](https://gzhel-sneakers.vercel.app/)
+- Challenge Source: [Frontend Mentor E-commerce Product Page](https://www.frontendmentor.io/challenges/ecommerce-product-page-UPsZ9MJp6)
 
 ## Built with
 
 - TypeScript
-- [React](https://reactjs.org/)
+- React
+- Redux, ReduxJS Toolkit
+- React Router v6
+- Swiper
 - SCSS
 - CSS Flex
 - CSS variables
-- CSS custom properties
-- Also used: axios, moment, classnames
+- Also used: axios, lodash, classnames
 
 ## Author
 
