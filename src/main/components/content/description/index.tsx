@@ -2,14 +2,10 @@
 import * as Icons from '@iconscout/react-unicons';
 import React, { FC } from 'react';
 import s from './index.module.scss';
-import { ProductInfo } from '../../../store-sneakers/api';
 import { useModel } from './model';
 
-type Props = {
-  productInfo: ProductInfo;
-};
-export const Description: FC<Props> = (p) => {
-  const m = useModel(p.productInfo);
+export const Description: FC = () => {
+  const m = useModel();
 
   return (
     <div className={s.description}>
@@ -36,7 +32,7 @@ export const Description: FC<Props> = (p) => {
         <button
           className={s.cartButton}
           disabled={m.count < 1}
-          onClick={() => m.addCartItem({ item: p.productInfo, amount: m.count })}
+          onClick={() => m.handleAddCartItem({ item: m.productInfo, amount: m.count })}
         >
           <Icons.UilShoppingCart size="1.5em" color="var(--neutral-color-4)" />
           <span className={s.addToCart}>Add to cart</span>

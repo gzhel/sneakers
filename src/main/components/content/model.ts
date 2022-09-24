@@ -1,26 +1,13 @@
 import { useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { api, ProductInfo, productInfoInitial } from '../../store-sneakers/api';
+import { useEffect } from 'react';
+import { useCallDispatch } from '../../store';
+import { sneakersActions } from '../../store-sneakers';
 
 export const useModel = () => {
-  const { productId } = useParams();
-
-  const [productInfo, setProductInfo] = useState<ProductInfo>(productInfoInitial);
-
-  const getProductInfo = async (id: number) => {
-    try {
-      const productInfo = await api.getProductInfo(id);
-      setProductInfo(productInfo);
-    } catch (error) {
-      console.error('Product info:', error);
-    }
-  };
+  const { productId = 0 } = useParams();
+  const getProductInfo = useCallDispatch(() => sneakersActions.getProductInfo(+productId));
 
   useEffect(() => {
-    if (productId) {
-      (async () => await getProductInfo(+productId))();
-    }
-  }, []);
-
-  return { productInfo };
+    (async () => await getProductInfo())();
+  }, [productId]);
 };

@@ -11,7 +11,7 @@ const useCartItems = () => {
 
 const useProductInfo = () => {
   const productInfo = useSelector(selectors.productInfo);
-  return { productInfo };
+  return { productInfo, images: productInfo.images };
 };
 
 const useIsMobile = () => {

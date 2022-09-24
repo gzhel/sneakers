@@ -7,15 +7,10 @@ import 'swiper/scss/navigation';
 import 'swiper/scss/pagination';
 import './styles/custom-swiper.scss';
 import s from './index.module.scss';
-import hooks from '../../../store-sneakers/hooks';
+import { useModel } from './model';
 
-type Props = {
-  images: string[];
-};
-export const Preview: FC<Props> = (p) => {
-  const { isMobile } = hooks.useIsMobile();
-
-  const bulletStyle = (idx: number) => `background-image: url(${p.images[idx]})`;
+export const Preview: FC = () => {
+  const { images, isMobile, bulletStyle } = useModel();
 
   return (
     <div className={s.preview}>
@@ -45,7 +40,7 @@ export const Preview: FC<Props> = (p) => {
         slidesPerView={1}
         className={s.swiper}
       >
-        {p.images.map((slideContent, index) => (
+        {images.map((slideContent, index) => (
           <SwiperSlide
             key={slideContent}
             virtualIndex={index}
